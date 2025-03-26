@@ -1,7 +1,9 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DirectGraph {
     private List<List<Integer>> graph;
@@ -19,5 +21,9 @@ public class DirectGraph {
             throw new IndexOutOfBoundsException();
         }
         graph.get(v).add(w);
+    }
+
+    public Set<Integer> neighbors(int v){
+        return new HashSet<>(graph.get(v));
     }
 }

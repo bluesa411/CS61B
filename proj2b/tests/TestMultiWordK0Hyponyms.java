@@ -41,5 +41,16 @@ public class TestMultiWordK0Hyponyms {
     }
 
     // TODO: Add more unit tests (including edge case tests) here.
+    @Test
+    public void testFlapAndLid(){
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymsHandler(
+                VERY_SHORT_WORDS_FILE, TOTAL_COUNTS_FILE, SYNSETS_FILE_SUBSET, HYPONYMS_FILE_SUBSET);
+        List<String> words = List.of("flap", "lid");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0, NgordnetQueryType.HYPONYMS);
+        String actual = studentHandler.handle(nq);
+        String expected = "[eyelid, lid, palpebra]";
+        assertThat(actual).isEqualTo(expected);
+    }
 
 }
