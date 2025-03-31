@@ -26,4 +26,17 @@ public class DirectGraph {
     public Set<Integer> neighbors(int v){
         return new HashSet<>(graph.get(v));
     }
+
+    public DirectGraph reverse(){
+        DirectGraph reverse = new DirectGraph();
+        for(int i = 0; i < graph.size(); i++){
+            reverse.createNode();
+        }
+        for(int i = 0; i < graph.size(); i++){
+            for(int destNode : graph.get(i)){
+                reverse.addEdge(destNode, i);
+            }
+        }
+        return reverse;
+    }
 }

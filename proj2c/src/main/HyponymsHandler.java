@@ -50,16 +50,13 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     }
     @Override
     public String handle(NgordnetQuery q){
+        List<String> sameHyponyms = new ArrayList<>();
         if(q.ngordnetQueryType() == HYPONYMS){
-            return handleHyponyms(q);
+            sameHyponyms = wordNet.hyponyms(q.words());
         }
         if(q.ngordnetQueryType() == ANCESTORS){
-            return handleAncestors();
+            sameHyponyms = wordNet.ancestors(q.words());
         }
-    }
-
-    public String handleHyponyms(NgordnetQuery q){
-        List<String> sameHyponyms = wordNet.hyponyms(q.words());
         if(q.k() == 0){
             return sameHyponyms.toString();
         }
@@ -82,10 +79,6 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         return popularHyponyms.toString();
     }
 
-    public String handleAncestors(){
-
-        return null;
-    }
 
     public class TimeSeriesSumComparator implements Comparator<TimeSeriesWithWord>{
 

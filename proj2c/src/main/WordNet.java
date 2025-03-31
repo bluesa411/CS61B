@@ -60,6 +60,7 @@ public class WordNet {
         return hyponyms;
     }
 
+
     public Set<String> oneWordHyponyms(String word){
         Set<String> hyponyms = new HashSet<>();
         for(int i : wordIndex(word)){
@@ -84,4 +85,12 @@ public class WordNet {
         return hyponymsList;
     }
 
+    public List<String> ancestors(List<String> words){
+        List<String> ancestors = new ArrayList<>();
+        DirectGraph originalGraph = this.graph;
+        this.graph = this.graph.reverse();
+        ancestors = hyponyms(words);
+        this.graph = originalGraph;
+        return ancestors;
+    }
 }
